@@ -3,12 +3,12 @@ include_once('../data/admin_session.php'); //check if naay session otherwise e r
 require_once "../class/Activity.php";
 include_once('../include/header1.php'); ?>
 
-<?php include_once('../include/banner.php'); ?>
+<?php include_once('../include/banner1.php'); ?>
 
 <nav class="navbar navbar-navs" style="margin-top:10px;">
     <div class="container-fluid d-flex justify-content-start">
 
-        <ul class="nav navbar-nav navigation d-flex flex-row justify-content-start">
+        <ul class="nav navbar-nav navigation d-flex flex-row justify-content-start" style="font-size: 1.17em;">
             <li>
                 <a href="employee.php"><span class="glyphicon glyphicon-user"></span> Manage Employee</a>
             </li>
@@ -106,7 +106,7 @@ include_once('../include/header1.php'); ?>
                                                 <h6><strong> <?= $r['user']; ?></strong></h6>
                                             </div>
                                             <div class="container-fluid">
-                                                <h6> <?= $r['time']; ?></h6>
+                                                <h6> <?php $oras = $r['time']; echo date('h:i:s a', strtotime($oras));?></h6>
                                             </div>
                                         </div>
                                     </button>

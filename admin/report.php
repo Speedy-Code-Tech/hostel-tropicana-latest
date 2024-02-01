@@ -37,7 +37,9 @@ include_once('../include/header.php'); ?>
           <!-- Add more dropdown items if needed -->
         </ul>
       </li>
-
+      <li>
+                <a href="activity.php"><span class="glyphicon glyphicon-list-alt"></span> Activity Log</a>
+            </li>
   	    <li class="active">
           <a href="report.php"><span class="glyphicon glyphicon-list-alt"></span> Report</a>
         </li>

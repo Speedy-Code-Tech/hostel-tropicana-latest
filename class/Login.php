@@ -124,6 +124,9 @@ class Login extends Database implements iLogin {
 		if(!$res){
 			$sql = "INSERT INTO activity (user,time,date,description) VALUES (?,?,?,?);";
 			$val = $this->insertRow($sql, [$userName, $time, $date,$desciption]);
+		}else{
+			$update = "UPDATE activity SET time = ? WHERE user = ? AND date = ?;";
+			$res = $this->updateRow($update,[$time,$userName,$date]);
 		}
       
         
