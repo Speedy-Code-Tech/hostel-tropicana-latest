@@ -17,7 +17,7 @@ class Activity extends Database  {
     }
 
     public function showLogs(){
-        $sql = "SELECT * FROM activity WHERE description LIKE '%Login Session%'";
+        $sql = "SELECT * FROM activity WHERE description LIKE '%Login Session%' ORDER BY id DESC";
         $result = $this->getRows($sql);
         return $result;
     }

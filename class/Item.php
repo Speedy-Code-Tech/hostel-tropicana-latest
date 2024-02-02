@@ -350,7 +350,7 @@ public function delete_item($eid)
 				VALUES(?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,NULL,NULL);
 				
 		";
-		$results = $this->insertRow($sql, [$one, $two, $three, $four, $five,$six,$seven,$eight,$nine,$ten,$stats,date('Y-m-d'),$con]);
+		$results = $this->insertRow($sql, [$one, $_SESSION['user'], $three, $four, $five,$six,$seven,$eight,$nine,$ten,$stats,date('Y-m-d'),$con]);
 		return $results;
 	}
 	// ...
