@@ -119,14 +119,15 @@ class Login extends Database implements iLogin {
         $time = date("H:i:s");
         $date = date("Y-m-d");
         $desciption = $data;
-		$check = "SELECT * FROM activity WHERE user = ? AND date = ?;";
-		$res = $this->getRow($check,[$userName,$date]);
-		if(!$res){
-			$sql = "INSERT INTO activity (user,time,date,description) VALUES (?,?,?,?);";
-			$val = $this->insertRow($sql, [$userName, $time, $date,$desciption]);
-		}else{
+		$check = "SELECT * FROM activity WHERE user = '$userName' AND date = '$date' AND description = '$userName Login Session';";
+		$res = $this->getRow($check);
+		if($res){
 			$update = "UPDATE activity SET time = ? WHERE user = ? AND date = ?;";
 			$res = $this->updateRow($update,[$time,$userName,$date]);
+			
+		}else{
+			$sql = "INSERT INTO activity (user,time,date,description) VALUES (?,?,?,?);";
+			$val = $this->insertRow($sql, [$userName, $time, $date,$desciption]);
 		}
       
         
