@@ -12,11 +12,22 @@ class Tools extends Database implements iTools{
 	public function insert_tools($iN, $sN, $mN, $b)
 {
    
+
     // If toolname doesn't exist, proceed with the insertion
     $insertQuery = "INSERT INTO tbl_tools(tagid, toolname, room, quantity)
                     VALUES (?, ?, ?, ?);";
 
     $result = $this->insertRow($insertQuery, [$iN, $sN, $mN, $b]);
+
+
+		date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Added';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$sN,$b,$data]);
+
 
     if ($result) {
         // Insertion successful
@@ -71,7 +82,21 @@ public function delete_item($eid)
     ];
 
     $result = $this->insertRow($sqlInsert, $values);
+	
+	date_default_timezone_set('Asia/Manila');
+	$userName = $_SESSION['user'];
+	$date = date("Y-m-d");
+	$data = 'Deleted';
 
+	$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+	$this->insertRow($sqls,[$userName,$date,$itemDetails['toolname'],'NULL',$data]);
+
+
+
+
+
+
+	
     if (!$result) {
         // Log or print the error message
         echo "Error inserting into borrower_history: " . $this->getLastError();
@@ -116,6 +141,21 @@ public function delete_item($eid)
 			  WHERE id = ?;
 		";
 		$result = $this->updateRow($sql, [$iN, $sN, $mN, $b,$id]);
+		
+		date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Updated';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$sN,$b,$data]);
+
+
+
+
+
+
+		
 		if($result){
 			//UPDATE BORRORWED ITEM
 			$sql1 = "UPDATE supp_borrowed SET item = ?, quantity = ? WHERE tagid = ? ";

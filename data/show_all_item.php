@@ -87,21 +87,21 @@ $item->Disconnect();
 
 <!-- for the datatable of item -->
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#myTable').DataTable();
-	});
+$(document).ready(function() {
+	$('#myTable').DataTable();
+});
 
 
 
 
 </script>
 <style>
-  /* Add this style to increase font size in the table */
-  #myTable th,
-  #myTable td {
-    font-size: 16px; /* Adjust the font size as needed */
-  }
-   body{
-  	font-size: 16px;
-  }
+/* Add this style to increase font size in the table */
+#myTable th,
+#myTable td {
+font-size: 16px; /* Adjust the font size as needed */
+}
+body{
+font-size: 16px;
+}
 </style>

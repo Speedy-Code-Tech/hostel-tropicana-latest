@@ -38,6 +38,9 @@ include_once('../include/header1.php'); ?>
             <li>
                 <a href="report.php"><span class="glyphicon glyphicon-list-alt"></span> Report</a>
             </li>
+            <li>
+          <a href="logs.php"><span class="glyphicon glyphicon-list-alt"></span> Logs</a>
+        </li>
             <li class="nav-item dropdown" style="position:absolute; right: 35px;">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="glyphicon glyphicon-user" style="margin-right:10px; color: black;"></span>

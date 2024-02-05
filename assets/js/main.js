@@ -344,7 +344,7 @@ $(document).on('submit', '#update-employee-form', function(event) {
 	}
 
 });
-/* end edit employee*/
+/* end fill_update_modal employee*/
 
 
 //employee remove or undo 

@@ -34,6 +34,9 @@ include_once('../include/header.php'); ?>
   	    <li>
           <a href="report.php"><span class="glyphicon glyphicon-list-alt"></span> Report</a>
         </li>
+        <li>
+          <a href="logs.php"><span class="glyphicon glyphicon-list-alt"></span> Logs</a>
+        </li>
       
   	  </ul>
   	   <ul class="nav navbar-nav navbar-right">

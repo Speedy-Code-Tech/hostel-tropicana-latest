@@ -1,5 +1,6 @@
 <?php 
 require_once('../class/Login.php');
+require_once('../class/Logs.php');
 // session_start();
 if(isset($_POST['data'])){
 	$data = json_decode($_POST['data'], true);
@@ -25,6 +26,7 @@ if(isset($_POST['data'])){
 			$result['user'] = $user_exist['accountname'];
 			$_SESSION['user'] =  $user_exist['accountname'];
 			$login->addActivity( $user_exist['accountname']." Login Session");
+			$log->addLog("LogIn Session","NULL","NULL");
 		}else{
 			//2 means admin 
 			$_SESSION['admin_logged_in'] = $user_exist['emp_id'];
@@ -32,7 +34,7 @@ if(isset($_POST['data'])){
 			$result['user'] = $user_exist['accountname'];
 			$_SESSION['user'] =  $user_exist['accountname'];
 			$login->addActivity( $user_exist['accountname']. " Login Session");
-
+			$log->addLog("LogIn Session","NULL","NULL");
 		}
 
 		

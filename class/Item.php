@@ -18,10 +18,17 @@ class Item extends Database implements iItem{
 						VALUES (?, ?, ?, ?, ?, ?, ?);";
 	
 		$result = $this->insertRow($insertQuery, [$iN, $sN, $mN, $b, $e, $last.$u, $a]);
-	
+		
+		date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Added';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$sN,$a,$data]);
+
 		if ($result) {
 			// Insertion successful	$act->addActivity();
-
 			return true;
 		} else {
 			// Insertion failed
@@ -70,6 +77,14 @@ class Item extends Database implements iItem{
         $insertHistorySql = "INSERT INTO borrower_history (name, category, tagid, item, room, quantity, status)
                              VALUES (?, ?, ?, ?, ?, ?, 'Delivered');";
 
+				date_default_timezone_set('Asia/Manila');
+				$userName = $_SESSION['user'];
+				$date = date("Y-m-d");
+				$data = 'Update';
+
+				$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+				$this->insertRow($sqls,[$userName,$date,$sN,$newQuantity,$data]);
+
         $this->insertRow($insertHistorySql, [$userSession, $sN, $mN, $sN, $mN, $a]);
 
         return true; // Successfully updated tbl_items, supp_borrowed, and added to borrower_history
@@ -101,10 +116,25 @@ class Item extends Database implements iItem{
 			  WHERE id = ?;
 		";
 		$result = $this->updateRow($sql, [$iN,$id]);
+
+
 		return $result;
 	}
-	public function update_items($iN, $iID)
-{
+	public function update_items($iN, $iID,$a)
+{	
+		
+	$show = "SELECT * FROM tbl_items WHERE tagid = ? ;";
+	$datas = $this->getRow($show,[$iID]);
+	
+	date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Borrowed';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$datas['supplyname'],$a,$data]);
+
+
     // Update supp_borrowed with status 'Added'
     $updateBorrowedSql = "UPDATE supp_borrowed
                           SET
@@ -121,14 +151,28 @@ class Item extends Database implements iItem{
 
     $resultItems = $this->updateRow($updateItemsSql, [$iN, $iID]);
 
+
+
     // Return true if both updates are successful, otherwise return false
     return ($resultBorrowed && $resultItems);
 }
 
 
 
-	public function update_tools($iN,$iID)
+	public function update_tools($iN,$iID,$a)
 	{	
+		$show = "SELECT * FROM tbl_tools WHERE tagid = ? ;";
+		$datas = $this->getRow($show,[$iID]);
+		
+		date_default_timezone_set('Asia/Manila');
+			$userName = $_SESSION['user'];
+			$date = date("Y-m-d");
+			$data = 'Borrowed';
+	
+			$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+			 $this->insertRow($sqls,[$userName,$date,$datas['toolname'],$a,$data]);
+
+			 
 		$sql="UPDATE tbl_tools
 		 	  SET  
 			  quantity = ?
@@ -137,8 +181,21 @@ class Item extends Database implements iItem{
 		$result = $this->updateRow($sql, [$iN,$iID]);
 		return $result;
 	}
-	public function update_equip($iN,$iID)
+	public function update_equip($iN,$iID,$a)
 	{	
+
+		$show = "SELECT * FROM equipment WHERE tagid = ? ;";
+		$datas = $this->getRow($show,[$iID]);
+		
+		date_default_timezone_set('Asia/Manila');
+			$userName = $_SESSION['user'];
+			$date = date("Y-m-d");
+			$data = 'Borrowed';
+	
+			$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+			 $this->insertRow($sqls,[$userName,$date,$datas['itemname'],$a,$data]);
+
+			 
 		$sql="UPDATE equipment
 		 	  SET  
 			  quantity = ?
@@ -226,6 +283,14 @@ public function delete_item($eid)
     ];
 
     $this->insertRow($sqlInsert, $values);
+
+	date_default_timezone_set('Asia/Manila');
+	$userName = $_SESSION['user'];
+	$date = date("Y-m-d");
+	$data = 'Deleted';
+
+	$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+	 $this->insertRow($sqls,[$userName,$date, $itemDetails['supplyname'],'NULL',$data]);
 
     // if (!$result) {
     //     // Log or print the error message

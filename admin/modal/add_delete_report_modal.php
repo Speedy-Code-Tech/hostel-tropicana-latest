@@ -1,5 +1,6 @@
 
 
+
 <div class="modal fade" id="modal-deletes-report">
 	<div class="modal-dialog">
 		<div class="modal-content"  style="background-color: rgb(145, 191, 123); padding:10px;">

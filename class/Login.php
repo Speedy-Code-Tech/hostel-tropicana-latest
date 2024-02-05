@@ -1,6 +1,7 @@
 <?php 
 require_once('../database/Database.php');
 require_once('../interface/iLogin.php');
+require_once('../class/Logs.php');
 session_start();
 class Login extends Database implements iLogin {
 	
@@ -69,8 +70,18 @@ class Login extends Database implements iLogin {
 		if(!$res){
 			$sql = "INSERT INTO activity (user,time,date,description) VALUES (?,?,?,?);";
 			$val = $this->insertRow($sql, [$userName, $time, $date,$desciption]);
+			
+		
 		}
 
+		date_default_timezone_set('Asia/Manila');
+		$userName = $_SESSION['user'];
+		$date = date("Y-m-d");
+		$desciption = "Logout Session";
+
+		$sql = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+		$result = $this->insertRow($sql,[$userName,$date,'NULL','NULL',$desciption]);
+		
 		unset($_SESSION['user_logged_in']);
 		header('location: ../index.php');
 	}
@@ -96,7 +107,17 @@ class Login extends Database implements iLogin {
 		if(!$res){
 			$sql = "INSERT INTO activity (user,time,date,description) VALUES (?,?,?,?);";
 			$val = $this->insertRow($sql, [$userName, $time, $date,$desciption]);
+
 		}
+
+		date_default_timezone_set('Asia/Manila');
+		$userName = $_SESSION['user'];
+		$date = date("Y-m-d");
+		$desciption = "Logout Session";
+
+		$sql = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+		$result = $this->insertRow($sql,[$userName,$date,'NULL','NULL',$desciption]);
+
 		unset($_SESSION['admin_logged_in']);
 		header('location: ../index.php');
 	}

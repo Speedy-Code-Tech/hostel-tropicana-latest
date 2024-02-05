@@ -19,13 +19,13 @@ if(isset($_POST['datas'])){
 
 		if($category=="Supplies"){
 			$borrowedStatus = "Consumed";
-			$res = $item->update_items($updatedQuan-$quantity,$tagid); 
+			$res = $item->update_items($updatedQuan-$quantity,$tagid,$quantity); 
 		}else if($category=="Tools"){
 			$borrowedStatus = "Borrowed";
-			$res = $item->update_tools($updatedQuan-$quantity,$tagid); 
+			$res = $item->update_tools($updatedQuan-$quantity,$tagid,$quantity); 
 		}if($category=="Equipment"){
 			$borrowedStatus = "Borrowed";
-			$res = $item->update_equip($updatedQuan-$quantity,$tagid); 
+			$res = $item->update_equip($updatedQuan-$quantity,$tagid,$quantity); 
 		}
 		if($res){
 			// $results = $item->insert_borrow($items,$name,$dateB,$contact,$whereit,$returnD,$quantity,$category,$tagid,$room);

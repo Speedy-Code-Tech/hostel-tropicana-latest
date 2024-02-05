@@ -17,7 +17,7 @@ $updateBorrowTool = $item->update_borrow_tools($iN,$sN,$mN,$b);
 	if($updateBorrowTool){
 		$resulta = $item->update_tool($iN,$id);
 	if($resulta){
-		$result = $item->update_tools($iN, $sN, $mN, $b,$id);
+	$result = $item->update_tools($iN, $sN, $mN, $b,$id);
 	if($result){
 			$result['msg'] = 'Data Updated Successfully!';
 		echo json_encode($result);

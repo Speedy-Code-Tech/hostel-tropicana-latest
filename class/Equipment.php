@@ -19,6 +19,19 @@ class Equipment extends Database implements iEquipment{
 	
 		$result = $this->insertRow($insertQuery, [$iN, $sN, $mN, $b, $bb]);
 	
+		date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Added';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$sN,$bb,$data]);
+
+
+
+
+
+
 		if ($result) {
 			// Insertion successful
 			echo "Equipment successfully inserted!";
@@ -74,6 +87,19 @@ class Equipment extends Database implements iEquipment{
     ];
 
     $result = $this->insertRow($sqlInsert, $values);
+	
+	date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Deleted';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$itemDetails['itemname'],'NULL',$data]);
+
+
+
+
+
 
     if (!$result) {
         // Log or print the error message
@@ -105,6 +131,19 @@ class Equipment extends Database implements iEquipment{
 			  WHERE id = ?;
 		";
 		$result = $this->updateRow($sql, [$iN, $sN, $mN, $b,$id,$a]);
+
+		date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Updated';
+
+        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$date,$sN,$id,$data]);
+
+
+
+
+		
 		return $result;
 	}
 	public function gettingId($tag)
@@ -142,6 +181,7 @@ class Equipment extends Database implements iEquipment{
 			  WHERE id = ?;
 		";
 		$result = $this->updateRow($sql, [$iN,$id]);
+
 		return $result;
 	}
 	public function insert_borrow($one, $two, $three, $four, $five, $six, $seven, $eight, $nine, $ten)

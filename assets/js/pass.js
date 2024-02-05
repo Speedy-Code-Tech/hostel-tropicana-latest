@@ -53,3 +53,4 @@ $(document).on('submit', '#form-changepasswords', function(event) {
 	}
 
 })
+
