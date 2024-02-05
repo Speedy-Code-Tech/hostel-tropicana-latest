@@ -25,8 +25,8 @@ class Tools extends Database implements iTools{
         $date = date("Y-m-d");
         $data = 'Added';
 
-        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-         $this->insertRow($sqls,[$userName,$date,$sN,$b,$data]);
+        $sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$sN,$b,$data]);
 
 
     if ($result) {
@@ -88,8 +88,8 @@ public function delete_item($eid)
 	$date = date("Y-m-d");
 	$data = 'Deleted';
 
-	$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-	$this->insertRow($sqls,[$userName,$date,$itemDetails['toolname'],'NULL',$data]);
+	$sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+	$this->insertRow($sqls,[$userName,$itemDetails['toolname'],'NULL',$data]);
 
 
 
@@ -147,8 +147,8 @@ public function delete_item($eid)
         $date = date("Y-m-d");
         $data = 'Updated';
 
-        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-         $this->insertRow($sqls,[$userName,$date,$sN,$b,$data]);
+        $sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$sN,$b,$data]);
 
 
 

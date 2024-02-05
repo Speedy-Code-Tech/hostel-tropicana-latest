@@ -10,18 +10,18 @@ class Logs extends Database  {
         $date = date("Y-m-d");
         $desciption = $data;
 
-        $sql = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-        $result = $this->insertRow($sql,[$userName,$date,$item,$quantity,$data]);
+        $sql = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+        $result = $this->insertRow($sql,[$userName,$item,$quantity,$data]);
         return $result;
     }
 
     public function getAllLogs(){
-        $sql = "SELECT * FROM logs";
+        $sql = "SELECT * FROM logs ORDER BY id DESC;";
         return $this->getRows($sql);
     }
 
    public function sort($f,$t){
-    $sql = "SELECT * FROM logs WHERE date >= '$f' AND date <= '$t';";
+    $sql = "SELECT * FROM logs WHERE date >= '$f' AND date <= '$t' ORDER BY id DESC;";
     return $this->getRows($sql);
    }
 }

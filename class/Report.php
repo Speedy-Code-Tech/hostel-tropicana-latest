@@ -32,7 +32,15 @@ class Report extends Database {
         return $result;
     } 
     public function return_return($tagid,$item,$dateborrowed,$quan,$setQuan,$category,$myId){
- 
+        
+        date_default_timezone_set('Asia/Manila');
+        $userName = $_SESSION['user'];
+        $date = date("Y-m-d");
+        $data = 'Returned';
+
+        $sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$item,$setQuan,$data]);
+
         if($category=="Tools"){
             $sql="SELECT quantity
             FROM tbl_tools

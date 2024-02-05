@@ -24,8 +24,8 @@ class Equipment extends Database implements iEquipment{
         $date = date("Y-m-d");
         $data = 'Added';
 
-        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-         $this->insertRow($sqls,[$userName,$date,$sN,$bb,$data]);
+        $sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$sN,$bb,$data]);
 
 
 

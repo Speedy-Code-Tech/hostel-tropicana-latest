@@ -29,7 +29,11 @@ if(isset($_POST['fromDates']) && isset($_POST['toDates'])){
         ?>
             <tr>
                 <td><?= $r['name']; ?></td>
-                <td><?= $r['date']; ?></td>
+                <td><?php
+                 $date = $r['date'];
+                 echo date('m/d/Y - h:i:s a', strtotime($date))
+
+                ?></td>
                 <td><?= $r['activity']; ?></td>
                 <td><?= $r['item'] == 'NULL' ? '-' : $r['item']; ?></td>
                 <td><?= $r['quantity'] == 'NULL' ? '-' : $r['quantity']; ?></td>

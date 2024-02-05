@@ -77,10 +77,10 @@ class Login extends Database implements iLogin {
 		date_default_timezone_set('Asia/Manila');
 		$userName = $_SESSION['user'];
 		$date = date("Y-m-d");
-		$desciption = "Logout Session";
+		$desciption = "Logout";
 
-		$sql = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-		$result = $this->insertRow($sql,[$userName,$date,'NULL','NULL',$desciption]);
+		$sql = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+		$result = $this->insertRow($sql,[$userName,'NULL','NULL',$desciption]);
 		
 		unset($_SESSION['user_logged_in']);
 		header('location: ../index.php');
@@ -113,10 +113,10 @@ class Login extends Database implements iLogin {
 		date_default_timezone_set('Asia/Manila');
 		$userName = $_SESSION['user'];
 		$date = date("Y-m-d");
-		$desciption = "Logout Session";
+		$desciption = "Logout";
 
-		$sql = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-		$result = $this->insertRow($sql,[$userName,$date,'NULL','NULL',$desciption]);
+		$sql = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+		$result = $this->insertRow($sql,[$userName,'NULL','NULL',$desciption]);
 
 		unset($_SESSION['admin_logged_in']);
 		header('location: ../index.php');

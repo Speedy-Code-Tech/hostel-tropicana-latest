@@ -24,8 +24,8 @@ class Item extends Database implements iItem{
         $date = date("Y-m-d");
         $data = 'Added';
 
-        $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-         $this->insertRow($sqls,[$userName,$date,$sN,$a,$data]);
+        $sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+         $this->insertRow($sqls,[$userName,$sN,$a,$data]);
 
 		if ($result) {
 			// Insertion successful	$act->addActivity();
@@ -80,10 +80,10 @@ class Item extends Database implements iItem{
 				date_default_timezone_set('Asia/Manila');
 				$userName = $_SESSION['user'];
 				$date = date("Y-m-d");
-				$data = 'Update';
+				$data = 'Updated';
 
-				$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-				$this->insertRow($sqls,[$userName,$date,$sN,$newQuantity,$data]);
+				$sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+				$this->insertRow($sqls,[$userName,$sN,$newQuantity,$data]);
 
         $this->insertRow($insertHistorySql, [$userSession, $sN, $mN, $sN, $mN, $a]);
 
@@ -169,8 +169,8 @@ class Item extends Database implements iItem{
 			$date = date("Y-m-d");
 			$data = 'Borrowed';
 	
-			$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-			 $this->insertRow($sqls,[$userName,$date,$datas['toolname'],$a,$data]);
+			$sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+			 $this->insertRow($sqls,[$userName,$datas['toolname'],$a,$data]);
 
 			 
 		$sql="UPDATE tbl_tools
@@ -192,8 +192,8 @@ class Item extends Database implements iItem{
 			$date = date("Y-m-d");
 			$data = 'Borrowed';
 	
-			$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-			 $this->insertRow($sqls,[$userName,$date,$datas['itemname'],$a,$data]);
+			$sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+			 $this->insertRow($sqls,[$userName,$datas['itemname'],$a,$data]);
 
 			 
 		$sql="UPDATE equipment
@@ -289,8 +289,8 @@ public function delete_item($eid)
 	$date = date("Y-m-d");
 	$data = 'Deleted';
 
-	$sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
-	 $this->insertRow($sqls,[$userName,$date, $itemDetails['supplyname'],'NULL',$data]);
+	$sqls = "INSERT INTO logs(name,item,quantity,activity) VALUES(?,?,?,?);";
+	 $this->insertRow($sqls,[$userName, $itemDetails['supplyname'],'NULL',$data]);
 
     // if (!$result) {
     //     // Log or print the error message
