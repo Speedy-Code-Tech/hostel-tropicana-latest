@@ -129,7 +129,7 @@ class Item extends Database implements iItem{
 	date_default_timezone_set('Asia/Manila');
         $userName = $_SESSION['user'];
         $date = date("Y-m-d");
-        $data = 'Borrowed';
+        $data = 'Consumed';
 
         $sqls = "INSERT INTO logs(name,date,item,quantity,activity) VALUES(?,?,?,?,?);";
          $this->insertRow($sqls,[$userName,$date,$datas['supplyname'],$a,$data]);
